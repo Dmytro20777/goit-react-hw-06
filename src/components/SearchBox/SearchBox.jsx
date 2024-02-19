@@ -1,7 +1,7 @@
 import { useId } from "react";
 import css from "./SearchBox.module.css";
 
-export const SearchBox = ({value, onChange}) => {
+const SearchBox = ({value, onChange}) => {
     const labelId = useId();
     return (
         <div className={css.container}>
@@ -18,3 +18,5 @@ export const SearchBox = ({value, onChange}) => {
         </div>
     )
 }
+
+export default SearchBox

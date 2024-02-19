@@ -9,7 +9,7 @@ const FeedbackSchema = Yup.object().shape({
   addNumber: Yup.string().min(3, "Too short").max(50, "Too long").required("Required"),
 });
 
-export const ContactForm = ({ addNewUser }) => {
+const ContactForm = ({ addNewUser }) => {
     const nameFieldId = useId();
     const numberFieldId = useId();
 
@@ -48,3 +48,5 @@ export const ContactForm = ({ addNewUser }) => {
         </div>
     );
 };
+
+export default ContactForm;
