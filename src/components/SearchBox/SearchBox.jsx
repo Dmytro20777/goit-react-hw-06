@@ -2,10 +2,11 @@ import { useId } from "react";
 import css from "./SearchBox.module.css";
 import { setFilter } from "../../redux/contacsSlice";
 import { useDispatch, useSelector } from "react-redux";
+import { selectFilter } from "../../redux/selectors";
 
 const SearchBox = () => {
     const dispatch = useDispatch();
-    const filter = useSelector(state => state.persons.filters.name);
+    const filter = useSelector(selectFilter);
 
     const handleInputChange = (event) => {
         dispatch(setFilter(event.target.value));

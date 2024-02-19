@@ -17,14 +17,14 @@ const FeedbackSchema = Yup.object().shape({
 const ContactForm = () => {
     const dispatch = useDispatch();
     
-    const addNewUser = (newName, newNumber) => {
+    const addNewContact = (newName, newNumber) => {
     dispatch(addContact({ id: nanoid(), name: newName, number: newNumber }));
   };
     const nameFieldId = useId();
     const numberFieldId = useId();
 
     const handleSubmit = (values, actions) => {
-        addNewUser(values.addUser, values.addNumber);
+        addNewContact(values.addUser, values.addNumber);
         actions.resetForm();
     };
 

@@ -3,13 +3,14 @@ import { Contact } from "../Contact/Contact";
 import css from "./ContactList.module.css"
 import { deleteContact } from "../../redux/contacsSlice";
 import { useEffect } from "react";
+import { selectContacts, selectFilter } from "../../redux/selectors";
 
 const ContactList = () => {
-    const dispatch = useDispatch();
-  const contactsPersons = useSelector(state => state.persons.contacts.items);
-  const filter = useSelector(state => state.persons.filters.name);
+  const dispatch = useDispatch();
+  const contacts = useSelector(selectContacts);
+  const filter = useSelector(selectFilter);
 
-  const visibleUser = contactsPersons.filter((contact) => contact.name.toLowerCase().includes(filter.toLowerCase()));
+  const visibleContacts = contacts.filter((contact) => contact.name.toLowerCase().includes(filter.toLowerCase()));
 
 
   const deleteUser = (userId) => {
@@ -19,9 +20,13 @@ const ContactList = () => {
     useEffect(() => { }, [filter]);
     
     return (
-        <ul className={css.list}>
-            <Contact items={ visibleUser } onDelete={deleteUser} />
-        </ul>
+<ul className={css.list}>
+      {visibleContacts.map((item) => (
+        <li key={item.id} className={css.item}>
+          <Contact item={item} onDelete={deleteUser} />
+        </li>
+      ))}
+    </ul>
     )
 }
 
