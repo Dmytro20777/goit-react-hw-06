@@ -4,12 +4,22 @@ import * as Yup from "yup";
 import { useId } from "react";
 import { IoPersonAdd } from "react-icons/io5";
 
+import { addContact } from "../../redux/contacsSlice";
+import { nanoid } from 'nanoid';
+import { useDispatch } from "react-redux";
+
+
 const FeedbackSchema = Yup.object().shape({
   addUser: Yup.string().min(3, "Too Short!").max(50, "Too Long!").required("Required"),
   addNumber: Yup.string().min(3, "Too short").max(50, "Too long").required("Required"),
 });
 
-const ContactForm = ({ addNewUser }) => {
+const ContactForm = () => {
+    const dispatch = useDispatch();
+    
+    const addNewUser = (newName, newNumber) => {
+    dispatch(addContact({ id: nanoid(), name: newName, number: newNumber }));
+  };
     const nameFieldId = useId();
     const numberFieldId = useId();
 
